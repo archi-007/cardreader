@@ -1,4 +1,4 @@
-#import all the necessary packages
+
 
 import numpy as np 
 import cv2
@@ -13,8 +13,7 @@ def order_points(pts):
 	diff = np.diff(pts, axis = 1)
 	rect[1] = pts[np.argmin(diff)]
 	rect[3] = pts[np.argmax(diff)]
- 
-	# return the ordered coordinates
+
 	return rect
 
 
@@ -37,11 +36,10 @@ def four_point_transform(image, pts):
 		[maxWidth - 1, maxHeight - 1],
 		[0, maxHeight - 1]], dtype = "float32")
  
-	# compute the perspective transform matrix and then apply it
+	
 	M = cv2.getPerspectiveTransform(rect, dst)
 	warped = cv2.warpPerspective(image, M, (maxWidth, maxHeight))
  
-	# return the warped image
 	return warped
 
 
